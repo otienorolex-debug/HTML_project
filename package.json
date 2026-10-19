@@ -1,0 +1,19 @@
+{
+  "name": "javascript-lab",
+  "version": "1.0.0",
+  "description": "A JavaScript lab",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 5000 --reporter spec"
+  },
+  "author": "flatironschool",
+  "license": "Included in Repo",
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "chai": "^4.3.8",
+    "jsdom": "^22.1.0",
+    "mocha": "^10.2.0",
+    "mocha-multi": "^1.1.3"
+  }
+}
