@@ -1,9 +1,17 @@
-let count = 0;
-const counterBtn = document.getElementById('increment-btn');
-const counterDisplay = document.getElementById('counter-value');
+const Form=document.getElementById('create-task-form');
 
-counterBtn.addEventListener('click', () => {
-    count++;
-    console.log(count);
-    counterDisplay.innerText = count;
+Form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const task = {
+        description: event.target['new-task-description'].value
+    };
+
+    buildToDo(task);
 });
+
+function buildToDo(task) {
+    const listItem = document.createElement('li');
+    listItem.textContent = task.description;
+    document.getElementById('tasks').appendChild(listItem);
+}
