@@ -1,67 +1,34 @@
-const bookStore = {
-    name: 'Flatbooks Technical Books',
-    books: [
-        {
-            id:1,
-            title: 'Eloquent JavaScript: A Modern Introduction to Programming',
-            author: 'Marjin Haverbeke',
-            imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51IKycqTPUL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg',
-            
-        },
-        {
-            id:2,
-            title: 'JavaScript & JQuery: Interactive Front-End Web Development',
-            author: 'Jon Duckett',
-            imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/31SRWF+LkKL._SX398_BO1,204,203,200_.jpg'
-        },
-        {
-            id:3,
-            title: 'JavaScript: The Good Parts',
-            author: 'Douglas Crockford',
-            imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/5131OWtQRaL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg',
-        },
-        {
-            id:4,
-            title: 'JavaScript: The Definitive Guide',
-            author: 'David Flanagan',
-            imageUrl: "https://images-na.ssl-images-amazon.com/images/I/51wijnc-Y8L._SX379_BO1,204,203,200_.jpg"
-            
-        },
-        {
-            id:5,
-            title: 'You Don’t Know JS',
-            author: 'Kyle Simpson',
-            imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41T5H8u7fUL._SX331_BO1,204,203,200_.jpg'
-        },
-        {
-            id:6,
-            title: 'Cracking the Coding Interview',
-            author: 'Gayle Laakmann McDowell',
-            imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41oYsXjLvZL._SY344_BO1,204,203,200_.jpg'
-            
-        }
-    ]
-}
+// Step 2: Select the form and add the submit event listener
+const taskForm = document.getElementById('create-task-form');
 
-// Write your code here!
+taskForm.addEventListener('submit', (event) => {
+    // Prevent the default form submission behavior (page reload)
+    event.preventDefault();
 
+    // Step 3: Handle form data using the input name "new-task-description"
+    const taskDescription = event.target['new-task-description'].value;
 
-const bookStoreTitle = document.getElementById('header');
-bookStoreTitle.textContent = bookStore.name;
+    // Gather data into an object
+    const taskObject = {
+        description: taskDescription
+    };
 
-const bookList = document.getElementById('book-list');
+    // Call buildToDo and pass in the saved task object
+    buildToDo(taskObject);
 
-bookStore.books.forEach((book) => {
-    const bookContainer = document.createElement('li');
-    const bookTitle = document.createElement('h3');
-    const bookAuthor = document.createElement('p');
-    const bookImage = document.createElement('img');
-
-    bookTitle.textContent = book.title;
-    bookAuthor.textContent = book.author;
-    bookImage.src = book.imageUrl;
-
-    bookContainer.append(bookTitle, bookAuthor, bookImage);
-    bookList.append(bookContainer);
+    // Optional: Clear the input field after submitting
+    taskForm.reset();
 });
 
+// Step 4: Add item to list and display
+function buildToDo(task) {
+    // Create a new li element
+    const listItem = document.createElement('li');
+
+    // Add the task description as the textContent
+    listItem.textContent = task.description;
+
+    // Append the li element to the task list (id="tasks")
+    const taskList = document.getElementById('tasks');
+    taskList.appendChild(listItem);
+}
